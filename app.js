@@ -7,14 +7,23 @@ const server = http.createServer(app)
 const io = require('socket.io')(server)
 const PORT = process.env.PORT || 8080
 
-
 app.get('/buckle', (req, res) => {
-  io.emit('buckle')
+  if (!req.query.seat) {
+    res.send('no seat for buckle')
+    return
+  }
+
+  io.emit('buckle', req.query.seat)
   res.send('Buckle emitted')
 })
 
 app.get('/unbuckle', (req, res) => {
-  io.emit('unbuckle')
+  if (!req.query.seat) {
+    res.send('no seat for unbuckle')
+    return
+  }
+
+  io.emit('unbuckle', req.query.seat)
   res.send('Unbuckle emitted')
 })
 
