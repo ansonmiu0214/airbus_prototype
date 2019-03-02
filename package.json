@@ -1,0 +1,24 @@
+{
+  "name": "airbus_prototype",
+  "version": "1.0.0",
+  "description": "Prototype seat belt state map",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ansonmiu0214/airbus_prototype.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ansonmiu0214/airbus_prototype/issues"
+  },
+  "homepage": "https://github.com/ansonmiu0214/airbus_prototype#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "socket.io": "^2.2.0"
+  }
+}
