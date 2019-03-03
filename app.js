@@ -7,7 +7,14 @@ const server = http.createServer(app)
 const io = require('socket.io')(server)
 const PORT = process.env.PORT || 8080
 
+var announcement = false
+
 app.get('/buckle', (req, res) => {
+  if (announcement) {
+    res.sendStatus(503)
+    return  
+  }
+
   if (!req.query.seat) {
     res.send('no seat for buckle')
     return
@@ -18,6 +25,11 @@ app.get('/buckle', (req, res) => {
 })
 
 app.get('/unbuckle', (req, res) => {
+  if (announcement) {
+    res.sendStatus(503)
+    return  
+  }
+
   if (!req.query.seat) {
     res.send('no seat for unbuckle')
     return
@@ -28,6 +40,11 @@ app.get('/unbuckle', (req, res) => {
 })
 
 app.get('/toggle', (req, res) => {
+  if (announcement) {
+    res.sendStatus(503)
+    return  
+  }
+
   if (!req.query.seat) {
     res.send('no seat for unbuckle')
     return
@@ -38,6 +55,11 @@ app.get('/toggle', (req, res) => {
 })
 
 app.get('/init', (req, res) => {
+  if (announcement) {
+    res.sendStatus(503)
+    return  
+  }
+
   const { seat, buckled } = req.query
   if (!seat || !buckled) {
     res.send('no initial state sent')
@@ -46,6 +68,18 @@ app.get('/init', (req, res) => {
 
   io.emit('init', { seat: seat, buckled: buckled })
   res.send('State emitted') 
+})
+
+app.get('/announceStart', (req, res) => {
+  if (!announcement) announcement = true
+  res.send('Announcement started')
+  io.emit('announce', true)
+})
+
+app.get('/announceStop', (req, res) => {
+  if (announcement) announcement = false
+  res.send('Announcement stopped')
+  io.emit('announce', false)
 })
 
 

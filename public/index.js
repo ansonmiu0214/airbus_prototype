@@ -41,3 +41,7 @@ socket.on('init', { seat, buckled } => {
   if (buckled == 0 && seat.classList.contains(buckledClass))
     seat.classList.remove(buckledClass)
 })
+
+socket.on('announce', isStart => {
+  document.getElementById('title').innerHTML = isStart ? 'Announcement In Progress' : ''
+})
