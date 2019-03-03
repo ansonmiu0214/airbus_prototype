@@ -30,8 +30,10 @@ socket.on('toggle', id => {
   seat.classList.toggle(buckledClass)
 })
 
-socket.on('init', { seat, buckled } => {
-  console.log('init seat received')
+socket.on('init', params => {
+  console.log('init seat received', params)
+
+  const { seat, buckled } = params
 
   const seat = document.getElementById(id).parentElement 
 
