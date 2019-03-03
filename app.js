@@ -37,6 +37,17 @@ app.get('/toggle', (req, res) => {
   res.send('Toggle emitted')
 })
 
+app.get('/init', (req, res) => {
+  const { seat, buckled } = req.query
+  if (!seat || !buckled) {
+    res.send('no initial state sent')
+    return
+  }
+
+  io.emit('init', { seat: seat, buckled: buckled })
+  res.send('State emitted') 
+})
+
 
 app.use('/', express.static(path.join(__dirname, 'public/')))
 

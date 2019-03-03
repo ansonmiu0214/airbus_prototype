@@ -29,3 +29,15 @@ socket.on('toggle', id => {
 
   seat.classList.toggle(buckledClass)
 })
+
+socket.on('init', { seat, buckled } => {
+  console.log('init seat received')
+
+  const seat = document.getElementById(id).parentElement 
+
+  if (buckled == 1 && !seat.classList.contains(buckledClass))
+    seat.classList.add(buckledClass)
+
+  if (buckled == 0 && seat.classList.contains(buckledClass))
+    seat.classList.remove(buckledClass)
+})
