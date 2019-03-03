@@ -46,5 +46,5 @@ socket.on('init', params => {
 })
 
 socket.on('announce', isStart => {
-  document.getElementById('title').innerHTML = isStart ? 'Announcement In Progress' : ''
+  document.getElementById('title').innerHTML = isStart ? 'Announcement In Progress' : ' '
 })
