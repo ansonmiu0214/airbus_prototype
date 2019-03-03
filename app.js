@@ -27,6 +27,17 @@ app.get('/unbuckle', (req, res) => {
   res.send('Unbuckle emitted')
 })
 
+app.get('/toggle', (req, res) => {
+  if (!req.query.seat) {
+    res.send('no seat for unbuckle')
+    return
+  }
+
+  io.emit('toggle', req.query.seat)
+  res.send('Toggle emitted')
+})
+
+
 app.use('/', express.static(path.join(__dirname, 'public/')))
 
 server.listen(PORT, () => console.log(`Listening on port ${PORT}...`))

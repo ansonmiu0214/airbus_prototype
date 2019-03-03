@@ -21,3 +21,11 @@ socket.on('unbuckle', id => {
   if (seat.classList.contains(buckledClass))
     seat.classList.remove(buckledClass)
 })
+
+socket.on('toggle', id => {
+  console.log('buckle event received')
+
+  const seat = document.getElementById(id).parentElement 
+
+  seat.classList.toggle(buckledClass)
+})
