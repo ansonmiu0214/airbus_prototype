@@ -33,7 +33,8 @@ socket.on('toggle', id => {
 socket.on('init', params => {
   console.log('init seat received', params)
 
-  const { seat, buckled } = params
+  const { buckled } = params
+  const id = params.seat
 
   const seat = document.getElementById(id).parentElement 
 
